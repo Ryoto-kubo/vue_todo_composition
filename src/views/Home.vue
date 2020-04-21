@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <!-- <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <div class="todo">
       <div class="todo__block">
@@ -13,23 +13,76 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div class="home">
+    <div class="input_container">
+      <div class="input_container_first">
+        <input type="text" v-model="state.firstText" />
+        {{ state.firstText }}
+      </div>
+      <div class="input_container_first">
+        <input type="text" v-model="state.secondText" />
+        {{ state.secondText }}
+      </div>
+    </div>
+    <p>
+      {{ state.hoge }}
+    </p>
+    <div class="btn_container">
+      <button type="button" @click="addText">
+        文字を合成
+      </button>
+    </div>
+    <div class="btn_container">
+      <button type="button" @click="deleteText">
+        文字を削除
+      </button>
+    </div>
+
+    <div v-for="item in itemArray" :key="item.id"></div>
   </div>
 </template>
 
 <script lang="ts">
-// @ is an alias to /src
-import {
-  defineComponent,
-  ref,
-  computed,
-  watch,
-  Ref
-} from '@vue/composition-api';
-
-function useUpdateTodo() {
-  const newTodoText = ref('');
+import { reactive, defineComponent, ref } from '@vue/composition-api'
+const useAddString = () => {
+  // const firstText = ref<string>('')
+  // const secondText = ref<string>('')
+  // const hoge = ref<string>('')
+  const state = reactive({
+    hoge: '',
+    firstText: '',
+    secondText: ''
+  })
+  const addText = (): void => {
+    state.hoge = state.firstText + state.secondText
+  }
+  const deleteText = (): void => {
+    state.hoge = '削除しました'
+  }
+  return {
+    state,
+    // firstText,
+    // secondText,
+    // hoge,
+    addText,
+    deleteText
+  }
 }
-export default defineComponent({});
+
+export default defineComponent({
+  setup() {
+    const { state, addText, deleteText } = useAddString()
+    return {
+      state,
+      // hoge,
+      // firstText,
+      // secondText,
+      addText,
+      deleteText
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
