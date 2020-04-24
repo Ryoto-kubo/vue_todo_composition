@@ -1,8 +1,8 @@
 <template>
-  <div></div>
+  <atoms-calc />
 </template>
 
-<script lang="ts">
+<script>
 export default {}
 </script>
 

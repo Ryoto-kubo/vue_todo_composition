@@ -1,8 +1,8 @@
 <template>
-  <div></div>
+  <h1>atoms</h1>
 </template>
 
-<script lang="ts">
+<script>
 export default {}
 </script>
 
