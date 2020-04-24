@@ -1,5 +1,5 @@
 <template>
-  <h1>atoms</h1>
+  <atoms-title />
 </template>
 
 <script>

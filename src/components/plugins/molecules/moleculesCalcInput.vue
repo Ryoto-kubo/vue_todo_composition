@@ -1,5 +1,5 @@
 <template>
-  <atoms-calc />
+  <atoms-input />
 </template>
 
 <script>
