@@ -1,12 +1,12 @@
 <template>
-  <organisms-calc />
+  <template-calc />
 </template>
 
 <script>
-import OrganismsCalc from '@/components/organisms/OrganismsCalc'
+import templateCalc from '@/components/templates/templateCalc'
 export default {
   components: {
-    OrganismsCalc
+    templateCalc
   }
 }
 </script>
