@@ -1,9 +1,18 @@
 <template>
-  <input class="input" type="text" readonly />
+  <input class="input" type="text" :value="defaultValue" readonly />
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
+  props: {
+    defaultValue: {
+      type: String,
+      required: true
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -16,5 +25,6 @@ export default {}
   font-weight: bold;
   outline: none;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 </style>

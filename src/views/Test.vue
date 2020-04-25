@@ -1,4 +1,3 @@
-//
 <template>
   <!-- <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
@@ -69,8 +68,8 @@ const useAddString = () => {
 }
 
 const createArray = () => {
-  const itemArray = ref(['jon', 'tarou', 'hanako', ''])
-  // const itemArray = reactive(['jon', 'tarou', 'hanako', ''])
+  const itemArray = ref(['jon', 'tarou', 'hanako', '']) // const itemArray = reactive(['jon', 'tarou', 'hanako', ''])
+  const hoge = ref('o')
   const insertArray = (): void => {
     const text = 'text'
     itemArray.value.push(text)

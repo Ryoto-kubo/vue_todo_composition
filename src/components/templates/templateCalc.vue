@@ -1,5 +1,7 @@
 <template>
-  <organisms-calc />
+  <div class="calculator">
+    <organisms-calc />
+  </div>
 </template>
 
 <script>
@@ -11,4 +13,11 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin: auto;
+}
+</style>

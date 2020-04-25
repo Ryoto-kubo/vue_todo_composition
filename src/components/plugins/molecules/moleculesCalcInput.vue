@@ -1,9 +1,16 @@
 <template>
-  <atoms-input />
+  <atoms-input :default-value="defaultValue" />
 </template>
 
-<script>
-export default {}
-</script>
+<script lang="ts">
+import { defineComponent, computed, reactive, ref } from '@vue/composition-api'
 
-<style></style>
+export default defineComponent({
+  props: {
+    defaultValue: {
+      type: String,
+      required: true
+    }
+  }
+})
+</script>

@@ -2,8 +2,8 @@
   <template-calc />
 </template>
 
-<script>
-import templateCalc from '@/components/templates/templateCalc'
+<script lang="ts">
+import templateCalc from '@/components/templates/templateCalc.vue'
 export default {
   components: {
     templateCalc
