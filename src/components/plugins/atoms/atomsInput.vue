@@ -1,5 +1,5 @@
 <template>
-  <input class="input" type="text" :value="defaultValue" readonly />
+  <input class="input" type="text" :value="inputValue || '0'" readonly />
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
-    defaultValue: {
+    inputValue: {
       type: String,
       required: true
     }

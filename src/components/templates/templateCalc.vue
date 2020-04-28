@@ -1,16 +1,24 @@
 <template>
   <div class="calculator">
-    <organisms-calc />
+    <organisms-calc :operator="operator" />
   </div>
 </template>
 
 <script>
 import organismsCalc from '@/components/organisms/organismsCalc'
-export default {
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
   components: {
     organismsCalc
+  },
+  props: {
+    operator: {
+      type: Object,
+      required: true
+    }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

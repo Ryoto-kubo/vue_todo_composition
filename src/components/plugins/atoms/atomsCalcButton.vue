@@ -7,10 +7,10 @@
     >
       <div
         class="button_container__row__item"
-        v-for="number in numberArray"
-        :key="number.id"
+        v-for="cmd in numberArray"
+        :key="cmd.id"
       >
-        <button @click="handleAddInput(number)">{{ number }}</button>
+        <button @click="handleAddInput(cmd)">{{ cmd }}</button>
       </div>
     </div>
   </div>
@@ -46,6 +46,8 @@ export default defineComponent({
       button {
         width: 100%;
         height: 60px;
+        font-size: 24px;
+        font-weight: bold;
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <atoms-input :default-value="defaultValue" />
+  <atoms-input :input-value="inputValue" />
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import { defineComponent, computed, reactive, ref } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
-    defaultValue: {
+    inputValue: {
       type: String,
       required: true
     }
