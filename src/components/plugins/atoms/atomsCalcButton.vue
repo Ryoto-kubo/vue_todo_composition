@@ -10,7 +10,16 @@
         v-for="cmd in numberArray"
         :key="cmd.id"
       >
-        <button @click="handleAddInput(cmd)">{{ cmd }}</button>
+        <button
+          @click="handleAddInput(cmd.value)"
+          :class="[
+            { number_btn: cmd.type === 'number' },
+            { operator_btn: cmd.type === 'operator' },
+            { calculation_btn: cmd.type === 'calculation' }
+          ]"
+        >
+          {{ cmd.value }}
+        </button>
       </div>
     </div>
   </div>
@@ -42,14 +51,32 @@ export default defineComponent({
       margin-bottom: 10px;
     }
     &__item {
-      width: calc((100% - 40px) / 4);
+      width: calc((100% - 45px) / 4);
       button {
         width: 100%;
-        height: 60px;
-        font-size: 24px;
-        font-weight: bold;
+        height: 36px;
+        font-size: 18px;
+        border-radius: 5px;
+        outline: none;
       }
     }
   }
+}
+.number_btn {
+  background: #f1f3f4;
+  border: 1px solid #f1f3f4;
+  color: #202124;
+}
+.operator_btn {
+  background: #dfe1e5;
+  border: 1px solid #dfe1e5;
+  font-weight: bold;
+  color: #202124;
+}
+.calculation_btn {
+  background: #4285f4;
+  border: 1px solid #4285f4;
+  color: #ffffff;
+  font-weight: bold;
 }
 </style>

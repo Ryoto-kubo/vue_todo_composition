@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-    <organisms-calc :operator="operator" />
+    <organisms-calc :operator="operator" :number-unit-array="numberUnitArray" />
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default defineComponent({
     operator: {
       type: Object,
       required: true
+    },
+    numberUnitArray: {
+      type: Array,
+      required: true
     }
   }
 })
@@ -24,7 +28,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .calculator {
   width: 100%;
-  max-width: 400px;
+  max-width: 375px;
   padding: 10px;
   margin: auto;
 }

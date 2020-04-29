@@ -4,7 +4,10 @@
       <molecules-title />
     </div>
     <div class="input_wrapper">
-      <molecules-calc-input :input-value="inputValue" />
+      <molecules-calc-display
+        :input-value="inputValue"
+        :handle-show-history="handleShowHistory"
+      />
     </div>
     <div class="button_wrapper">
       <molecules-calc-button
@@ -16,16 +19,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@vue/composition-api'
+import { defineComponent, reactive, Ref, toRefs } from '@vue/composition-api'
 function useAddInput(operator: Record<string, string>) {
-  const inputValue = ref('')
-  const historyArray = ref<string[]>([])
-
+  const state = reactive<{ historyArray: string[]; inputValue: string }>({
+    historyArray: [],
+    inputValue: ''
+  })
   const handleInputClear = (): void => {
-    inputValue.value = ''
+    state.inputValue = ''
   }
   const handleInputBinomialOperator = (cmd: string): void => {
-    inputValue.value += ' ' + cmd + ' '
+    state.inputValue += ' ' + cmd + ' '
   }
   const handleCalculation = (
     numArray: number[],
@@ -36,38 +40,38 @@ function useAddInput(operator: Record<string, string>) {
       if (index === 0) {
         switch (element) {
           case operator.plus:
-            inputValue.value = String(numArray[index] + numArray[index + 1])
+            state.inputValue = String(numArray[index] + numArray[index + 1])
             break
           case operator.minus:
-            inputValue.value = String(numArray[index] - numArray[index + 1])
+            state.inputValue = String(numArray[index] - numArray[index + 1])
             break
           case operator.multiplication:
-            inputValue.value = String(numArray[index] * numArray[index + 1])
+            state.inputValue = String(numArray[index] * numArray[index + 1])
             break
           case operator.division:
-            inputValue.value = String(numArray[index] / numArray[index + 1])
+            state.inputValue = String(numArray[index] / numArray[index + 1])
             break
         }
       } else {
         switch (element) {
           case operator.plus:
-            inputValue.value = String(
-              Number(inputValue.value) + numArray[index + 1]
+            state.inputValue = String(
+              Number(state.inputValue) + numArray[index + 1]
             )
             break
           case operator.minus:
-            inputValue.value = String(
-              Number(inputValue.value) - numArray[index + 1]
+            state.inputValue = String(
+              Number(state.inputValue) - numArray[index + 1]
             )
             break
           case operator.multiplication:
-            inputValue.value = String(
-              Number(inputValue.value) * numArray[index + 1]
+            state.inputValue = String(
+              Number(state.inputValue) * numArray[index + 1]
             )
             break
           case operator.division:
-            inputValue.value = String(
-              Number(inputValue.value) / numArray[index + 1]
+            state.inputValue = String(
+              Number(state.inputValue) / numArray[index + 1]
             )
             break
         }
@@ -75,7 +79,7 @@ function useAddInput(operator: Record<string, string>) {
     })
   }
   const handleInputValueToArray = (): void => {
-    const inputValueArray = inputValue.value.split(' ')
+    const inputValueArray = state.inputValue.split(' ')
     const operatorArray: string[] = []
     const numArray: number[] = []
     inputValueArray.map(element => {
@@ -91,7 +95,7 @@ function useAddInput(operator: Record<string, string>) {
       }
     })
     handleCalculation(numArray, operatorArray, operator)
-    historyArray.value.push(inputValue.value)
+    state.historyArray.push(state.inputValue)
   }
   const handleAddInput = (cmd: string): void => {
     if (cmd === 'AC') {
@@ -106,39 +110,45 @@ function useAddInput(operator: Record<string, string>) {
       handleInputValueToArray()
       return
     }
-    inputValue.value += cmd
+    state.inputValue += cmd
   }
 
   return {
-    inputValue,
-    historyArray,
+    ...toRefs(state),
     handleAddInput
   }
 }
 
+function useShowHistory(inputValue: Ref<string>) {
+  const handleShowHistory = () => {
+    console.log(inputValue)
+  }
+
+  return {
+    handleShowHistory
+  }
+}
 export default defineComponent({
   props: {
     operator: {
       type: Object,
       required: true
+    },
+    numberUnitArray: {
+      type: Array,
+      required: true
     }
   },
   setup(props) {
     const { operator } = props
-    const numberUnitArray = reactive([
-      ['(', ')', '%', 'AC'],
-      ['7', '8', '9', '÷'],
-      ['4', '5', '6', '×'],
-      ['1', '2', '3', '-'],
-      ['0', '.', '=', '+']
-    ])
-    const { inputValue, historyArray, handleAddInput } = useAddInput(operator)
+    const { inputValue, handleAddInput } = useAddInput(operator)
+    const { handleShowHistory } = useShowHistory(inputValue)
 
     return {
-      numberUnitArray,
-
       inputValue,
-      handleAddInput
+      handleAddInput,
+
+      handleShowHistory
     }
   }
 })
