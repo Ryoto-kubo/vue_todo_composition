@@ -11,7 +11,7 @@ export default defineComponent({
     templateCalc
   },
   setup() {
-    const numberUnitArray = reactive([
+    const numberUnitArray: string[][] = reactive([
       [
         { value: '(', type: 'operator' },
         { value: ')', type: 'operator' },

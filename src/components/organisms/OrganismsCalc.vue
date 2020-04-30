@@ -21,6 +21,15 @@
 <script lang="ts">
 import { defineComponent, reactive, Ref, toRefs } from '@vue/composition-api'
 function useAddInput(operator: Record<string, string>) {
+  // interface ReactiveObject {
+  //   historyArray: Array<string>
+  //   inputValue: string
+  // }
+  // const state: ReactiveObject = reactive({
+  //   historyArray: [],
+  //   inputValue: ''
+  // })
+  // こっちも使える
   const state = reactive<{ historyArray: string[]; inputValue: string }>({
     historyArray: [],
     inputValue: ''
@@ -84,10 +93,10 @@ function useAddInput(operator: Record<string, string>) {
     const numArray: number[] = []
     inputValueArray.map(element => {
       if (
-        element === '+' ||
-        element === '-' ||
-        element === '×' ||
-        element === '÷'
+        element === operator.plus ||
+        element === operator.minus ||
+        element === operator.multiplication ||
+        element === operator.division
       ) {
         operatorArray.push(element)
       } else {
@@ -98,15 +107,20 @@ function useAddInput(operator: Record<string, string>) {
     state.historyArray.push(state.inputValue)
   }
   const handleAddInput = (cmd: string): void => {
-    if (cmd === 'AC') {
+    if (cmd === operator.allClear) {
       handleInputClear()
       return
     }
-    if (cmd === '+' || cmd === '-' || cmd === '÷' || cmd === '×') {
+    if (
+      cmd === operator.plus ||
+      cmd === operator.minus ||
+      cmd === operator.multiplication ||
+      cmd === operator.division
+    ) {
       handleInputBinomialOperator(cmd)
       return
     }
-    if (cmd === '=') {
+    if (cmd === operator.equal) {
       handleInputValueToArray()
       return
     }

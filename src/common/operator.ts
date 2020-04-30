@@ -2,5 +2,7 @@ export const Operator: Record<string, string> = {
   plus: '+',
   minus: '-',
   multiplication: '×',
-  division: '÷'
+  division: '÷',
+  equal: '=',
+  allClear: 'AC'
 }

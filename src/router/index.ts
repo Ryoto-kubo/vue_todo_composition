@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue';
-import PagesCalc from '@/components/pages/PagesCalc.vue'
+import PagesCalc from '@/components/pages/pagesCalc.vue'
 import Test from '../views/Test.vue'
 
 Vue.use(VueRouter)
