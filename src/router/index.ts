@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue';
-import PagesCalc from '@/components/pages/pagesCalc.vue'
+import pagesCalc from '@/components/pages/pagesCalc.vue'
+import pagesAccordion from '@/components/pages/pagesAccordion.vue'
 import Test from '../views/Test.vue'
 
 Vue.use(VueRouter)
@@ -9,7 +10,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: PagesCalc
+    component: pagesCalc
+  },
+  {
+    path: '/accordion',
+    component: pagesAccordion
   },
   {
     path: '/test',
