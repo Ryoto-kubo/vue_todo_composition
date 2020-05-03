@@ -1,5 +1,5 @@
 <template>
-  <template-calc :operator="Operator" :number-unit-array="numberUnitArray" />
+  <templateCalc :operator="Operator" :number-unit-array="numberUnitArray" />
 </template>
 
 <script lang="ts">

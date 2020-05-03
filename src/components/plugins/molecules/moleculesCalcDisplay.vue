@@ -1,7 +1,7 @@
 <template>
   <div class="input_contaciner">
-    <atoms-calc-history-icon :handle-show-history="handleShowHistory" />
-    <atoms-calc-display :input-value="inputValue" />
+    <atomsIconHistory :handle-show-history="handleShowHistory" />
+    <atomsCalcDisplay :input-value="inputValue" />
   </div>
 </template>
 
