@@ -11,8 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive } from '@vue/composition-api'
-
+import { defineComponent, onMounted, reactive } from '@vue/composition-api'
 type ReactiveObject = {
   clientHeight: number
 }
@@ -26,9 +25,7 @@ function useShowAccordion(id: string) {
   })
 
   onMounted(() => {
-    const jsToggleMenu: HTMLElement | null = document.getElementById(
-      'js-toggle_menu_0' + id
-    )
+    const jsToggleMenu = document.getElementById('js-toggle_menu_0' + id)
     if (jsToggleMenu !== null) {
       state.clientHeight = jsToggleMenu.clientHeight
       jsToggleMenu.style.height = 'auto'
@@ -44,12 +41,12 @@ function useShowAccordion(id: string) {
         lastH == '' || lastH == '0px' ? state.clientHeight + 'px' : '0px'
     }
   }
-  const handleRotateArrow = (id: string) => {
+  const handleRotateArrow = (id: string): void => {
     const jsRotateArrow = document.getElementById('js-rotate_arrow_0' + id)
     if (jsRotateArrow !== null) {
       if (jsRotateArrow.classList.contains('rotate_active')) {
-        jsRotateArrow.classList.remove('rotate_active')
         jsRotateArrow.classList.add('rotate_disabled')
+        jsRotateArrow.classList.remove('rotate_active')
         handleShowAccordion()
       } else {
         jsRotateArrow.classList.add('rotate_active')

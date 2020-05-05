@@ -18,8 +18,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.accordion_wrapper {
-  // margin-bottom: 30px;
-}
-</style>
+<style lang="scss" scoped></style>
